@@ -1,0 +1,28 @@
+{
+  "name": "crawler-web",
+  "version": "1.0.0",
+  "description": "Crawler to extract links from a webpage HTML",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davi-Nascimento-Santos/Crawler-Web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Davi-Nascimento-Santos/Crawler-Web/issues"
+  },
+  "homepage": "https://github.com/Davi-Nascimento-Santos/Crawler-Web#readme",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  },
+  "dependencies": {
+    "jsdom": "^20.0.3"
+  }
+}
