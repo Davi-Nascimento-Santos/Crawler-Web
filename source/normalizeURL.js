@@ -8,7 +8,11 @@ async function crawlPage(baseURL, pages){
             const html = await data.text();
             const urls = getURLsFromHTML(html, baseURL);
             for(const url of urls){
-                pages[url] = 1;
+                if (pages[url] > 0){
+                    pages[url]++;
+                }else{
+                    pages[url] = 1;
+                }
             }
         }else{
             throw new Error("Error, no HTML page");
@@ -25,22 +29,15 @@ function getURLsFromHTML(html, baseURL){
     const as = dom.window.document.querySelectorAll('a');
     const urls = [];
     for (const a of as){
-        if (a.href.slice(0, 1) === '/'){
-            try{
-                const newURL = `${baseURL}${a.href}`;
-                const fullURLObj = new URL(newURL);
-                urls.push(`${fullURLObj.href}`)
-            }catch(err){
-                console.log(`error with message: ${err}, relative path invalid on ${a.href}`)
+        if (!a.href) continue
+        try{
+            const urlObj = new URL(a.href, baseURL);
+            if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:'){
+                console.log(urlObj.href);
+                urls.push(`${urlObj.href}`)
             }
-        }else{
-            try{
-                const fullURLObj = new URL(a.href);
-                urls.push(fullURLObj.href);
-            }catch(err){
-                console.log(`Error with message: ${err}, absolute path invalid on ${a.href}`)
-            }
-            
+        }catch(err){
+            console.log(`Invalid URL`)
         }
     }
     return urls;
