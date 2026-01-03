@@ -1,5 +1,5 @@
 process.argv
-const {crawlPage} = require('./normalizeURL');
+const {crawlPage} = require('./crawl');
 async function main(){
     if (process.argv.length < 3){
         console.log("Error, don't pass the url parameter");

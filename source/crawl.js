@@ -30,10 +30,12 @@ function getURLsFromHTML(html, baseURL){
     const urls = [];
     for (const a of as){
         if (!a.href) continue
+        const isRelative = a.href.startsWith('/');
+        const isAbsolute = a.href.startsWith('http://') || a.href.startsWith('https://');
+        if (!isRelative && !isAbsolute) continue;
         try{
             const urlObj = new URL(a.href, baseURL);
             if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:'){
-                console.log(urlObj.href);
                 urls.push(`${urlObj.href}`)
             }
         }catch(err){
