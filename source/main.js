@@ -8,7 +8,7 @@ async function main(){
         console.log("Error, pass too many arguments");
     }
     try{
-        const result = await crawlPage(process.argv[2], {});
+        const result = await crawlPage(process.argv[2], process.argv[2], {});
         console.log(result);
     }catch(err){
         console.log(err);
