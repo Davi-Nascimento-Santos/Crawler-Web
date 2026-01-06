@@ -1,5 +1,6 @@
 process.argv
 const {crawlPage} = require('./crawl');
+const {sortPages} = require('./report')
 async function main(){
     if (process.argv.length < 3){
         console.log("Error, don't pass the url parameter");
@@ -9,7 +10,7 @@ async function main(){
     }
     try{
         const result = await crawlPage(process.argv[2], process.argv[2], {});
-        console.log(result);
+        console.log(sortPages(result));
     }catch(err){
         console.log(err);
     }
